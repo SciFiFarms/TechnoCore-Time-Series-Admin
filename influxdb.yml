@@ -1,0 +1,30 @@
+version: "3.5"
+
+networks:
+  influxdb-time-series-admin:
+
+secrets:
+  influxdb_time-series-admin_password:
+    name: ${STACK_NAME:-technocore}_influxdb_time-series-admin_password
+    external: true
+  time-series-admin_influxdb_password:
+    name: ${STACK_NAME:-technocore}_time-series-admin_influxdb_password
+    external: true
+
+services:
+  influxdb:
+    networks:
+      - influxdb-time-series-admin
+    secrets:
+      - source: influxdb_time-series-admin_password
+        target: users/time-series-admin
+
+  time-series-admin:
+    networks:
+      - influxdb-time-series-admin
+    secrets:
+      - source: time-series-admin_influxdb_password
+        target: influxdb_password
+
+
+
