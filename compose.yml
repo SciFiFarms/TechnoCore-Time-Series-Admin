@@ -15,7 +15,7 @@ services:
     deploy:
       labels:
         - traefik.frontend.rule=$TIME_SERIES_ADMIN_ROUTING_LABEL
-        - traefik.frontend.priority=$time-series-admin_ROUTING_LABEL_PRIORITY
+        - traefik.frontend.priority=$TIME_SERIES_ADMIN_ROUTING_LABEL_PRIORITY
         - traefik.port=80
         - ${TRAEFIK_BASIC_AUTH}
         - traefik.enable=true
